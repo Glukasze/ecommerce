@@ -20,21 +20,17 @@ public class Product {
 
     private BigDecimal price;
 
-    public Product id(Long id) {
-        this.id = id;
-        return this;
-    }
-
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Product identifier(int identifier) {
-        this.identifier = identifier;
+    public Product id(Long id) {
+        this.id = id;
+
         return this;
     }
 

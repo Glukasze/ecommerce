@@ -4,6 +4,7 @@ import com.example.ecommerce.dto.ProductDto;
 import com.example.ecommerce.model.Product;
 import com.example.ecommerce.service.ProductService;
 import com.example.ecommerce.service.mapper.ProductMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,16 +13,18 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequiredArgsConstructor
 public class ProductController {
 
     @Autowired
-    private ProductService productService;
+    private final ProductService productService;
 
     @GetMapping(path = "/products")
     public ResponseEntity<List<ProductDto>> getAllProducts() {
         List<Product> existingProducts = productService.findAll();
         List<ProductDto> productsDto = existingProducts.stream().map(ProductMapper.INSTANCE::apply).toList();
-        return ResponseEntity.accepted().body(productsDto);
+
+        return ResponseEntity.ok().body(productsDto);
     }
 
     @GetMapping(path = "/products/{identifier}")
@@ -39,6 +42,7 @@ public class ProductController {
     @PostMapping(path = "/products")
     public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto newProductDto) {
         Product savedProduct = productService.save(ProductMapper.INSTANCE.apply(newProductDto));
+
         return ResponseEntity.accepted().body(ProductMapper.INSTANCE.apply(savedProduct));
     }
 
