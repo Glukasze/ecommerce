@@ -33,4 +33,8 @@ public class ProductService {
         return productRepository.findIdByIdentifier(identifier);
     }
 
+    public void deleteByIdentifier(int identifier) {
+        productRepository.deleteByIdentifier(identifier);
+    }
+
 }

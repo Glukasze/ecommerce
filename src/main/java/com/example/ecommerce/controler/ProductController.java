@@ -58,4 +58,10 @@ public class ProductController {
         return ResponseEntity.accepted().body(ProductMapper.INSTANCE.apply(productService.save(updatedProduct)));
     }
 
+    @DeleteMapping(path = "/product/{identifier}")
+    public ResponseEntity<Object> deleteProduct(@PathVariable int identifier) {
+        productService.deleteByIdentifier(identifier);
+        return ResponseEntity.ok().build();
+    }
+
 }

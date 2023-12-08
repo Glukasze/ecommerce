@@ -14,4 +14,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query("SELECT id FROM Product p WHERE p.identifier = :identifier")
     Optional<Long> findIdByIdentifier(@Param("identifier") int identifier);
 
+    void deleteByIdentifier(@Param("identifier") int identifier);
+
 }
