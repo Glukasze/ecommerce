@@ -36,4 +36,8 @@ public class CustomerService {
         return customerRepository.findIdByIdentifier(identifier);
     }
 
+    public void deleteByIdentifier(int identifier) {
+        customerRepository.deleteByIdentifier(identifier);
+    }
+
 }
