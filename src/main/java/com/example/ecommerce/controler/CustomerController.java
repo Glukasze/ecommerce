@@ -59,4 +59,10 @@ public class CustomerController {
         return ResponseEntity.accepted().body(CustomerMapper.INSTANCE.apply(updatedCustomer));
     }
 
+    @DeleteMapping(path = "/customer/{identifier}")
+    public ResponseEntity<Object> deleteCustomer(@PathVariable int identifier) {
+        customerService.deleteByIdentifier(identifier);
+        return ResponseEntity.ok().build();
+    }
+
 }

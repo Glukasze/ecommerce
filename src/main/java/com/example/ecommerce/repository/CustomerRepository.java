@@ -15,4 +15,6 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
     @Query("SELECT id FROM Customer c WHERE c.identifier = :identifier")
     Optional<Long> findIdByIdentifier(@Param("identifier") int identifier);
 
+    void deleteByIdentifier(int identifier);
+
 }
