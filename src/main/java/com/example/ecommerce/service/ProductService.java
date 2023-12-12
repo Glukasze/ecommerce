@@ -25,15 +25,15 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public Optional<Product> findByIdentifier(int identifier) {
+    public Optional<Product> findByIdentifier(String identifier) {
         return productRepository.findByIdentifier(identifier);
     }
 
-    public Optional<Long> findIdByIdentifier(int identifier) {
+    public Optional<Long> findIdByIdentifier(String identifier) {
         return productRepository.findIdByIdentifier(identifier);
     }
 
-    public void deleteByIdentifier(int identifier) {
+    public void deleteByIdentifier(String identifier) {
         productRepository.deleteByIdentifier(identifier);
     }
 
