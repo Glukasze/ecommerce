@@ -9,11 +9,11 @@ import java.util.Optional;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
-    Optional<Product> findByIdentifier(int identifier);
+    Optional<Product> findByIdentifier(String identifier);
 
     @Query("SELECT id FROM Product p WHERE p.identifier = :identifier")
-    Optional<Long> findIdByIdentifier(@Param("identifier") int identifier);
+    Optional<Long> findIdByIdentifier(@Param("identifier") String identifier);
 
-    void deleteByIdentifier(@Param("identifier") int identifier);
+    void deleteByIdentifier(@Param("identifier") String identifier);
 
 }

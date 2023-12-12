@@ -28,7 +28,7 @@ public class ProductController {
     }
 
     @GetMapping(path = "/products/{identifier}")
-    public ResponseEntity<ProductDto> getProductByIdentifier(@PathVariable int identifier) {
+    public ResponseEntity<ProductDto> getProductByIdentifier(@PathVariable String identifier) {
         Optional<Product> existingProduct = productService.findByIdentifier(identifier);
 
         if (existingProduct.isEmpty())
@@ -53,13 +53,15 @@ public class ProductController {
         if (productId.isEmpty())
             return ResponseEntity.notFound().build();
 
-        Product updatedProduct = productService.save(ProductMapper.INSTANCE.apply(newProductDto).id(productId.get()));
+        Product updatedProduct = productService.save(ProductMapper.INSTANCE.apply(newProductDto)
+                .id(productId.get()))
+                .identifier(newProductDto.getIdentifier());
 
         return ResponseEntity.accepted().body(ProductMapper.INSTANCE.apply(productService.save(updatedProduct)));
     }
 
     @DeleteMapping(path = "/product/{identifier}")
-    public ResponseEntity<Object> deleteProduct(@PathVariable int identifier) {
+    public ResponseEntity<Object> deleteProduct(@PathVariable String identifier) {
         productService.deleteByIdentifier(identifier);
         return ResponseEntity.ok().build();
     }
