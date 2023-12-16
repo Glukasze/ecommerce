@@ -28,15 +28,15 @@ public class CustomerService {
         return customerRepository.findAll();
     }
 
-    public Optional<Customer> findByIdentifier(int identifier) {
+    public Optional<Customer> findByIdentifier(String identifier) {
         return customerRepository.findByIdentifier(identifier);
     }
 
-    public Optional<Long> findCustomerIdByIdentifier(int identifier) {
+    public Optional<Long> findCustomerIdByIdentifier(String identifier) {
         return customerRepository.findIdByIdentifier(identifier);
     }
 
-    public void deleteByIdentifier(int identifier) {
+    public void deleteByIdentifier(String identifier) {
         customerRepository.deleteByIdentifier(identifier);
     }
 
