@@ -7,7 +7,7 @@ import java.time.LocalDate;
 @Data
 public class CustomerDto {
 
-    private int identifier;
+    private String identifier;
 
     private String email;
 

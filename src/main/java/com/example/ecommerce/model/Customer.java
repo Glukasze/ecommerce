@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Entity
 public class Customer {
@@ -15,7 +16,7 @@ public class Customer {
     private Long id;
 
     @Column(unique = true, nullable = false)
-    private int identifier;
+    private String identifier = UUID.randomUUID().toString();
 
     private String email;
 
@@ -29,22 +30,19 @@ public class Customer {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public Customer id(Long id) {
         this.id = id;
 
         return this;
     }
 
-    public int getIdentifier() {
+    public String getIdentifier() {
         return identifier;
     }
 
-    public void setIdentifier(int identifier) {
+    public Customer identifier(String identifier) {
         this.identifier = identifier;
+        return this;
     }
 
     public String getEmail() {

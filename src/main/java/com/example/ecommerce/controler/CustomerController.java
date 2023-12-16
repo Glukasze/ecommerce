@@ -29,7 +29,7 @@ public class CustomerController {
     }
 
     @GetMapping(path = "/customers/{identifier}")
-    public ResponseEntity<CustomerDto> getCustomerByIdentifier(@PathVariable int identifier) {
+    public ResponseEntity<CustomerDto> getCustomerByIdentifier(@PathVariable String identifier) {
         Optional<Customer> existingCustomer = customerService.findByIdentifier(identifier);
 
         if (existingCustomer.isEmpty())
@@ -54,13 +54,15 @@ public class CustomerController {
         if (customerId.isEmpty())
             return ResponseEntity.notFound().build();
 
-        Customer updatedCustomer = customerService.save(CustomerMapper.INSTANCE.apply(customerDto).id(customerId.get()));
+        Customer updatedCustomer = customerService.save(CustomerMapper.INSTANCE.apply(customerDto)
+                .id(customerId.get())
+                .identifier(customerDto.getIdentifier()));
 
         return ResponseEntity.accepted().body(CustomerMapper.INSTANCE.apply(updatedCustomer));
     }
 
     @DeleteMapping(path = "/customer/{identifier}")
-    public ResponseEntity<Object> deleteCustomer(@PathVariable int identifier) {
+    public ResponseEntity<Object> deleteCustomer(@PathVariable String identifier) {
         customerService.deleteByIdentifier(identifier);
         return ResponseEntity.ok().build();
     }

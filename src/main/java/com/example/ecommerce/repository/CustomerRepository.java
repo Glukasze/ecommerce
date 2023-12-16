@@ -10,11 +10,11 @@ import java.util.Optional;
 
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
-    Optional<Customer> findByIdentifier(int identifier);
+    Optional<Customer> findByIdentifier(String identifier);
 
     @Query("SELECT id FROM Customer c WHERE c.identifier = :identifier")
-    Optional<Long> findIdByIdentifier(@Param("identifier") int identifier);
+    Optional<Long> findIdByIdentifier(@Param("identifier") String identifier);
 
-    void deleteByIdentifier(int identifier);
+    void deleteByIdentifier(String identifier);
 
 }
